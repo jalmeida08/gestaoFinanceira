@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UsuarioController {
 
 	@GetMapping("/")
-	public String login() {
+	public String login() { 
 		return "index";
 	}
 	
