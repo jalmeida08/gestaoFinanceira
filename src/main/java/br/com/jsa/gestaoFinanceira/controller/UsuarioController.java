@@ -2,8 +2,10 @@ package br.com.jsa.gestaoFinanceira.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/usuario")
 public class UsuarioController {
 
 	@GetMapping("/")
@@ -13,6 +15,6 @@ public class UsuarioController {
 	
 	@GetMapping(value = "/home" )
 	public String home() {
-		return "home";
+		return "usuario/home";
 	}
 }
