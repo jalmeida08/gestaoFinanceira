@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/tamplate/layout">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Formulário</title>
+</head>
+<body>
+	
+	<section layout:fragment="content">
+		<form action="#" th:action="@{/usuario/salvar}" th:object="${usuario}" method="post">
+			<div class="input-group">
+				<label for="nome">Nome</label>
+				<input type="text" th:field="*{{nome}}" class="form-control"/>
+			</div>
+			<div class="input-group">
+				<label for="email">E-mail</label>
+				<input  type="text" th:field="*{{email}}" class="form-control"/>
+			</div>
+			<div class="input-group">
+				<label for="senha">Senha</label>
+				<input type="password"  th:field="*{senha}" class="form-control"/>
+			</div>
+			<button class="brn brn-primary">Enviar</button>
+		</form>
+	</section>
+	
+</body>
+</html>

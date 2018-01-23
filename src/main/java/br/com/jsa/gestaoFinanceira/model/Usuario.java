@@ -1,24 +1,23 @@
 package br.com.jsa.gestaoFinanceira.model;
 
 import java.security.MessageDigest;
-
 import javax.persistence.Entity;
 
 @Entity
 public class Usuario extends Pessoa {
 
-	private String usuario;
+	private String email;
 	private String senha;
 
 	public Usuario() {
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSenha() {
