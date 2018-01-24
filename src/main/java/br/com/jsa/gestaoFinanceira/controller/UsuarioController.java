@@ -12,15 +12,22 @@ import br.com.jsa.gestaoFinanceira.repository.UsuarioRepository;
 
 @Controller
 @RequestMapping("/usuario")
-public class UsuarioController {
+public class UsuarioController{
 
 	@Autowired
 	private UsuarioRepository repository;
 	
 	@GetMapping("/")
-	public String login() { 
-		
+	public String login(Model model) { 
+		model.addAttribute("usuario", new Usuario());
 		return "index";
+	}
+	
+	@PostMapping(value="logar")
+	public String logar(Usuario usuario) {
+		Usuario login = repository.findUsuarioByEmailAndSenha(usuario.getEmail(), usuario.getSenha());
+		
+		return "";
 	}
 	
 	@GetMapping(value = "/home" )
@@ -36,7 +43,6 @@ public class UsuarioController {
 	
 	@PostMapping(value="/salvar")
 	public String salvar(Usuario usuario) {
-		repository.save(usuario);
 		return "redirect:/usuario/form";
 	}
 }
