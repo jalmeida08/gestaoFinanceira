@@ -6,7 +6,11 @@ import org.springframework.stereotype.Repository;
 import br.com.jsa.gestaoFinanceira.model.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
-	 public Usuario findUsuarioByEmailAndSenha(String email, String senha);
+	public Usuario findUsuarioByEmailAndSenha(String email, String senha);
+
+	public Usuario findByEmail(String email);
+
+	public Usuario findByEmailIn(Usuario usuario);
 }
