@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.jsa.gestaoFinanceira.ComercialUserDetailsService;
 import br.com.jsa.gestaoFinanceira.model.Usuario;
 import br.com.jsa.gestaoFinanceira.repository.UsuarioRepository;
 
@@ -16,17 +17,19 @@ public class UsuarioController{
 
 	@Autowired
 	private UsuarioRepository repository;
+	@Autowired
+	private ComercialUserDetailsService comercialUserDetailsService;
 	
 	@GetMapping("/")
-	public String login(Model model) { 
-		model.addAttribute("usuario", new Usuario());
+	public String login() { 
+		System.out.println("TO AQUI ");
 		return "index";
 	}
 	
 	@PostMapping(value="logar")
 	public String logar(Usuario usuario) {
-		Usuario login = repository.findUsuarioByEmailAndSenha(usuario.getEmail(), usuario.getSenha());
-		
+		System.out.println("LOGAR");
+		this.comercialUserDetailsService.loadUserByUsername(usuario.getEmail());
 		return "";
 	}
 	

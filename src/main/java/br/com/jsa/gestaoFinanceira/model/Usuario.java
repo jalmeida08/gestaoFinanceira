@@ -1,11 +1,20 @@
 package br.com.jsa.gestaoFinanceira.model;
 
 import java.security.MessageDigest;
+import java.util.Collection;
+
 import javax.persistence.Entity;
 
-@Entity
-public class Usuario extends Pessoa {
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+@Entity
+public class Usuario extends Pessoa implements UserDetails {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String email;
 	private String senha;
 
@@ -40,4 +49,38 @@ public class Usuario extends Pessoa {
 
 	}
 
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return null;
+	}
+
+	@Override
+	public String getPassword() {
+		return this.senha;
+	}
+
+	@Override
+	public String getUsername() {
+		return this.email;
+	}
+
+	@Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
