@@ -11,14 +11,14 @@
 </head>
 <body>
 	<section layout:fragment="content">
-		<form th:action="@{/}"  method="post">
+		<form th:action="@{/usuario/logar}" th:object="${usuario}" method="post">
 			<div class="input-group">
-				<label for="email">E-mail</label>
-				<input id="email" name="userName" class="form-control" />
+				<label for="nome">E-mail</label>
+				<input type="text" th:field="*{{email}}" class="form-control"/>
 			</div>
 			<div class="input-group">
 				<label for="senha">Senha</label>
-				<input type="password" id="senha" name="password" class="form-control" />
+				<input type="password"  th:field="*{senha}" class="form-control"/>
 			</div>
 			<div class="input-group">
 				<button class="btn btn-primary">Logar</button>

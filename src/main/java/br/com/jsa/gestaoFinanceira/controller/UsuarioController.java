@@ -1,40 +1,34 @@
 package br.com.jsa.gestaoFinanceira.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.jsa.gestaoFinanceira.ComercialUserDetailsService;
 import br.com.jsa.gestaoFinanceira.model.Usuario;
-import br.com.jsa.gestaoFinanceira.repository.UsuarioRepository;
 
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioController{
 
-	@Autowired
-	private UsuarioRepository repository;
-	@Autowired
-	private ComercialUserDetailsService comercialUserDetailsService;
-	
 	@GetMapping("/")
-	public String login() { 
-		System.out.println("TO AQUI ");
+	public String login(Model model) { 
+		model.addAttribute("usuario", new Usuario());
 		return "index";
 	}
 	
 	@PostMapping(value="logar")
-	public String logar(Usuario usuario) {
-		System.out.println("LOGAR");
-		this.comercialUserDetailsService.loadUserByUsername(usuario.getEmail());
-		return "";
+	public String logar(@ModelAttribute("usuario") Usuario usuario) {
+		System.out.println("email: "+ usuario.getEmail() + " Senha: " + usuario.getSenha());
+		
+		
+		return "redirect:/despesa/home";
 	}
 	
 	@GetMapping(value = "/home" )
-	public String home() {
+	public String home(Model model) {
 		return "usuario/home";
 	}
 	
@@ -45,7 +39,8 @@ public class UsuarioController{
 	}
 	
 	@PostMapping(value="/salvar")
-	public String salvar(Usuario usuario) {
-		return "redirect:/usuario/form";
+	public String salvar(@ModelAttribute("usuario") Usuario usuario, Model model) {
+		
+		return "redirect:/usuario/home";
 	}
 }
