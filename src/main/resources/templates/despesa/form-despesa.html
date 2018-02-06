@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="tamplate/layout">
+
+
+<head>
+<meta charset="UTF-8" />
+<title>Cadastrar Despesa</title>
+
+</head>
+<body>
+	<section layout:fragment="content">
+		<form th:action="@{/despesa/cadastrar}" th:object="${despesa}" method="post">
+			<div class="input-group">
+				<label for="nome">Descrição</label>
+				<input type="text" th:field="*{{descricao}}" class="form-control"/>
+			</div>
+			<div class="input-group">
+				<label for="valor">Valor</label>
+				<input type="text"  th:field="*{valor}" class="form-control"/>
+			</div>
+			
+			<div class="input-group">
+				<label for="a">Valor</label>
+				<select	th:field="*{tipo}">
+					<option th:each="tipo : ${tipos}" th:value="${tipos}" th:text="${tipos}" />
+				</select>
+			</div>
+			<div class="input-group">
+				<button class="btn btn-primary">Logar</button>
+			</div>
+		</form>
+	</section>
+</body>
+</html>
